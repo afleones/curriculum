@@ -18,11 +18,11 @@ Ademas, incluye una navegacion responsive (desktop y mobile), animaciones suaves
 
 ### Vista desktop
 
-![Vista desktop del curriculum](./docs/screenshots/desktop.svg)
+![Vista desktop del curriculum](./docs/screenshots/desktop.png)
 
 ### Vista mobile
 
-![Vista mobile del curriculum](./docs/screenshots/mobile.svg)
+![Vista mobile del curriculum](./docs/screenshots/mobile.png)
 
 ## Tecnologias usadas
 

@@ -1,0 +1,163 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+	keywords?: string;
+	image?: string;
+}
+
+const {
+	title = "Andres Felipe Leones Palacio | Full Stack Developer",
+	description = "Curriculum web bilingue de Andres Felipe Leones Palacio, Full Stack Developer en Barranquilla, Colombia. Experiencia en Node.js, NestJS, PHP, Laravel, PostgreSQL, MySQL, Docker, CI/CD, integracion frontend-backend, arquitectura limpia y soluciones de alto rendimiento.",
+	keywords = "Andres Leones, Andres Felipe Leones Palacio, Full Stack Developer, Desarrollador Full Stack, Backend Developer, Frontend Developer, Node.js, NestJS, PHP, Laravel, JavaScript, Next.js, PostgreSQL, MySQL, Docker, CI/CD, APIs REST, Microservices, Monolithic Architecture, JWT, OAuth, Linux Servers, Cloud Deployment, DevOps, Grafana, Prometheus, AI Integration, Prompt Engineering, Barranquilla, Colombia, Remote Developer",
+	image = "/profile.jpeg",
+} = Astro.props;
+
+const siteName = "Curriculum Web | Andres Leones";
+const pageUrl = Astro.url.href;
+const canonical = Astro.site
+	? new URL(Astro.url.pathname, Astro.site).toString()
+	: pageUrl;
+const baseUrl = Astro.site
+	? Astro.site.toString()
+	: new URL("/", pageUrl).toString();
+const imageUrl = new URL(image, baseUrl).toString();
+
+const personSchema = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: "Andres Felipe Leones Palacio",
+	alternateName: "Andres Leones",
+	jobTitle: "Full Stack Developer",
+	description,
+	url: canonical,
+	image: imageUrl,
+	email: "mailto:leones1997@live.com",
+	telephone: "+573007483976",
+	address: {
+		"@type": "PostalAddress",
+		addressLocality: "Barranquilla",
+		addressCountry: "CO",
+	},
+	knowsLanguage: ["es", "en"],
+	knowsAbout: [
+		"Node.js",
+		"NestJS",
+		"PHP",
+		"Laravel",
+		"JavaScript",
+		"Next.js",
+		"PostgreSQL",
+		"MySQL",
+		"Docker",
+		"REST API",
+		"Microservices",
+		"CI/CD",
+		"Cloud Deployment",
+		"Grafana",
+		"Prometheus",
+		"Prompt Engineering",
+	],
+	sameAs: [
+		"https://linkedin.com/in/backdev97",
+		"https://github.com/afleones",
+		"https://instagram.com/aleones97",
+	],
+};
+
+const websiteSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	name: siteName,
+	url: canonical,
+	inLanguage: ["es", "en"],
+	author: {
+		"@type": "Person",
+		name: "Andres Felipe Leones Palacio",
+	},
+	description,
+};
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta
+			name="robots"
+			content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+		/>
+		<meta
+			name="googlebot"
+			content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+		/>
+		<meta name="author" content="Andres Felipe Leones Palacio" />
+		<meta name="creator" content="Andres Felipe Leones Palacio" />
+		<meta name="publisher" content="Andres Felipe Leones Palacio" />
+		<meta
+			name="format-detection"
+			content="telephone=yes, address=yes, email=yes"
+		/>
+		<meta name="theme-color" content="#0f1c1f" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="canonical" href={canonical} />
+		<link rel="me" href="https://linkedin.com/in/backdev97" />
+		<link rel="me" href="https://github.com/afleones" />
+		<link rel="me" href="https://instagram.com/aleones97" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={imageUrl} />
+		<meta
+			property="og:image:alt"
+			content="Foto de perfil de Andres Felipe Leones Palacio"
+		/>
+		<meta property="og:locale" content="es_CO" />
+		<meta property="og:locale:alternate" content="en_US" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageUrl} />
+		<meta
+			name="twitter:image:alt"
+			content="Foto de perfil de Andres Felipe Leones Palacio"
+		/>
+
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(personSchema)}
+		/>
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(websiteSchema)}
+		/>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
